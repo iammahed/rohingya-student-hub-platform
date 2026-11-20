@@ -1,0 +1,361 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Student Login | Rohingya Student Hub</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Inter', sans-serif;
+    }
+
+    body {
+      min-height: 100vh;
+      background: #071321;
+      color: white;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      padding: 24px 7%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      color: white;
+      font-size: 19px;
+      font-weight: 800;
+      text-decoration: none;
+    }
+
+    .logo span {
+      color: #22c58b;
+    }
+
+    .back-link {
+      color: #c1ccda;
+      text-decoration: none;
+      font-size: 13px;
+    }
+
+    .main {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 35px 18px 60px;
+    }
+
+    .login-card {
+      width: 100%;
+      max-width: 450px;
+      padding: 42px;
+      background: rgba(17, 36, 55, 0.88);
+      border: 1px solid rgba(255,255,255,0.09);
+      border-radius: 22px;
+      box-shadow: 0 25px 70px rgba(0,0,0,0.28);
+    }
+
+    .top-label {
+      color: #22c58b;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      margin-bottom: 14px;
+    }
+
+    h1 {
+      font-size: 29px;
+      margin-bottom: 10px;
+    }
+
+    .subtitle {
+      color: #aab8c8;
+      font-size: 14px;
+      line-height: 1.7;
+      margin-bottom: 30px;
+    }
+
+    .field {
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      color: #dce5ef;
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 9px;
+    }
+
+    input {
+      width: 100%;
+      padding: 15px;
+      background: #0b1c2d;
+      border: 1px solid #263c50;
+      border-radius: 10px;
+      color: white;
+      outline: none;
+      font-size: 14px;
+    }
+
+    input:focus {
+      border-color: #22c58b;
+      box-shadow: 0 0 0 3px rgba(34,197,139,0.12);
+    }
+
+    input::placeholder {
+      color: #718399;
+    }
+
+    .password-wrap {
+      position: relative;
+    }
+
+    .password-wrap input {
+      padding-right: 65px;
+    }
+
+    .show-password {
+      position: absolute;
+      right: 13px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      color: #22c58b;
+      cursor: pointer;
+      font-weight: 600;
+    }
+
+    .forgot {
+      display: block;
+      text-align: right;
+      color: #22c58b;
+      text-decoration: none;
+      font-size: 12px;
+      margin: -5px 0 22px;
+    }
+
+    .login-btn {
+      width: 100%;
+      padding: 15px;
+      background: #22c58b;
+      color: #071321;
+      border: none;
+      border-radius: 10px;
+      font-size: 14px;
+      font-weight: 800;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .login-btn:hover {
+      background: #36dda2;
+      transform: translateY(-2px);
+    }
+
+    .divider {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: #77899d;
+      font-size: 12px;
+      margin: 25px 0;
+    }
+
+    .divider::before,
+    .divider::after {
+      content: "";
+      flex: 1;
+      height: 1px;
+      background: #293e51;
+    }
+
+    .google-btn {
+      width: 100%;
+      padding: 14px;
+      background: transparent;
+      color: white;
+      border: 1px solid #344a60;
+      border-radius: 10px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .google-btn:hover {
+      background: #172d41;
+      border-color: #22c58b;
+    }
+
+    .bottom-text {
+      text-align: center;
+      color: #9eafc0;
+      font-size: 13px;
+      margin-top: 28px;
+    }
+
+    .bottom-text a {
+      color: #22c58b;
+      text-decoration: none;
+      font-weight: 700;
+    }
+
+    #message {
+      margin-top: 16px;
+      text-align: center;
+      font-size: 13px;
+      line-height: 1.5;
+      color: #22c58b;
+    }
+
+    footer {
+      text-align: center;
+      color: #687b90;
+      font-size: 11px;
+      padding: 20px;
+    }
+
+    @media (max-width: 520px) {
+      header {
+        padding: 20px;
+      }
+
+      .login-card {
+        padding: 29px 22px;
+      }
+
+      h1 {
+        font-size: 25px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <a href="index.html" class="logo">
+      Rohingya <span>Student Hub</span>
+    </a>
+
+    <a href="index.html" class="back-link">
+      ← Back to Home
+    </a>
+  </header>
+
+  <main class="main">
+    <section class="login-card">
+
+      <div class="top-label">WELCOME BACK</div>
+
+      <h1>Welcome back!</h1>
+
+      <p class="subtitle">
+        Sign in to reconnect with students,
+        explore opportunities and continue your journey.
+      </p>
+
+      <form id="loginForm">
+
+        <div class="field">
+          <label for="email">Email Address</label>
+
+          <input
+            type="email"
+            id="email"
+            placeholder="Enter your email"
+            autocomplete="email"
+            required
+          >
+        </div>
+
+        <div class="field">
+          <label for="password">Password</label>
+
+          <div class="password-wrap">
+            <input
+              type="password"
+              id="password"
+              placeholder="Enter your password"
+              autocomplete="current-password"
+              required
+            >
+
+            <button
+              type="button"
+              class="show-password"
+              id="togglePassword"
+            >
+              Show
+            </button>
+          </div>
+        </div>
+
+        <a href="#" id="forgotPassword" class="forgot">
+          Forgot password?
+        </a>
+
+        <button type="submit" class="login-btn">
+          Sign In →
+        </button>
+
+      </form>
+
+      <div class="divider">OR</div>
+
+      <button type="button" class="google-btn" id="googleSignIn">
+        Continue with Google
+      </button>
+
+      <p id="message" role="status" aria-live="polite"></p>
+
+      <p class="bottom-text">
+        Don't have an account?
+        <a href="register.html">Create one</a>
+      </p>
+
+    </section>
+  </main>
+
+  <footer>
+    © <span id="year"></span> Rohingya Student Hub.
+    Connect. Learn. Share. Grow.
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent =
+      new Date().getFullYear();
+
+    document.getElementById("togglePassword")
+      .addEventListener("click", function () {
+        const password = document.getElementById("password");
+
+        if (password.type === "password") {
+          password.type = "text";
+          this.textContent = "Hide";
+        } else {
+          password.type = "password";
+          this.textContent = "Show";
+        }
+      });
+  </script>
+
+  <script type="module" src="login.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,322 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Join Rohingya Student Hub</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 25px 15px;
+      color: white;
+      background:
+        radial-gradient(circle at 15% 20%, #123e52 0%, transparent 35%),
+        radial-gradient(circle at 85% 80%, #064e3b 0%, transparent 35%),
+        linear-gradient(135deg, #071525, #0b1d32 55%, #071525);
+    }
+
+    .container {
+      width: 100%;
+      max-width: 460px;
+      padding: 38px 35px;
+      border: 1px solid rgba(52, 211, 153, 0.25);
+      border-radius: 22px;
+      background: rgba(13, 31, 49, 0.92);
+      box-shadow:
+        0 0 35px rgba(16, 185, 129, 0.12),
+        0 20px 60px rgba(0, 0, 0, 0.35);
+      backdrop-filter: blur(15px);
+    }
+
+    .logo {
+      text-align: center;
+      font-size: 27px;
+      font-weight: bold;
+      color: #ffffff;
+      margin-bottom: 9px;
+    }
+
+    .logo span {
+      color: #34d399;
+    }
+
+    .subtitle {
+      text-align: center;
+      color: #a8b8c9;
+      font-size: 14px;
+      margin-bottom: 30px;
+      line-height: 1.6;
+    }
+
+    h2 {
+      text-align: center;
+      font-size: 25px;
+      margin-bottom: 8px;
+    }
+
+    .description {
+      text-align: center;
+      color: #9aabba;
+      font-size: 14px;
+      margin-bottom: 27px;
+    }
+
+    .form-group {
+      margin-bottom: 18px;
+    }
+
+    label {
+      display: block;
+      font-size: 13px;
+      color: #dce8f1;
+      margin-bottom: 8px;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="password"] {
+      width: 100%;
+      padding: 14px 15px;
+      border: 1px solid #294257;
+      border-radius: 10px;
+      outline: none;
+      color: white;
+      background: #10263b;
+      font-size: 14px;
+      transition: 0.3s;
+    }
+
+    input:focus {
+      border-color: #34d399;
+      box-shadow: 0 0 0 3px rgba(52, 211, 153, 0.12);
+    }
+
+    input::placeholder {
+      color: #8194a8;
+    }
+
+    .terms {
+      display: flex;
+      align-items: flex-start;
+      gap: 9px;
+      margin: 20px 0;
+      color: #a8b8c9;
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    .terms input {
+      margin-top: 3px;
+      accent-color: #10b981;
+    }
+
+    .terms a,
+    .links a {
+      color: #34d399;
+      text-decoration: none;
+    }
+
+    .terms a:hover,
+    .links a:hover {
+      text-decoration: underline;
+    }
+
+    button {
+      width: 100%;
+      padding: 14px;
+      border: none;
+      border-radius: 10px;
+      font-size: 15px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .create-btn {
+      color: #06251c;
+      background: linear-gradient(135deg, #34d399, #10b981);
+      box-shadow: 0 5px 20px rgba(16, 185, 129, 0.22);
+    }
+
+    .create-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(16, 185, 129, 0.35);
+    }
+
+    .create-btn:disabled,
+    .google-btn:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .divider {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin: 23px 0;
+      color: #8295a8;
+      font-size: 12px;
+    }
+
+    .divider::before,
+    .divider::after {
+      content: "";
+      height: 1px;
+      flex: 1;
+      background: #294257;
+    }
+
+    .google-btn {
+      color: white;
+      background: #172e43;
+      border: 1px solid #365168;
+    }
+
+    .google-btn:hover {
+      background: #203c54;
+      border-color: #34d399;
+    }
+
+    #message {
+      text-align: center;
+      font-size: 13px;
+      margin-top: 17px;
+      line-height: 1.5;
+    }
+
+    .links {
+      text-align: center;
+      margin-top: 25px;
+      color: #a8b8c9;
+      font-size: 14px;
+      line-height: 2;
+    }
+
+    .back-home {
+      display: block;
+      text-align: center;
+      margin-top: 15px;
+      color: #91a5b8;
+      font-size: 13px;
+      text-decoration: none;
+    }
+
+    .back-home:hover {
+      color: #34d399;
+    }
+
+    @media (max-width: 480px) {
+      .container {
+        padding: 30px 22px;
+      }
+
+      .logo {
+        font-size: 23px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <main class="container">
+
+    <div class="logo">
+      Rohingya <span>Student Hub</span>
+    </div>
+
+    <p class="subtitle">
+      Connect. Learn. Share. Grow.
+    </p>
+
+    <h2>Create Your Account</h2>
+
+    <p class="description">
+      Join a growing community of students and learners.
+    </p>
+
+    <form id="registerForm">
+
+      <div class="form-group">
+        <label for="fullName">Full Name</label>
+        <input
+          type="text"
+          id="fullName"
+          placeholder="Enter your full name"
+          required
+        >
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email Address</label>
+        <input
+          type="email"
+          id="email"
+          placeholder="Enter your email address"
+          required
+        >
+      </div>
+
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input
+          type="password"
+          id="password"
+          placeholder="Create a password (minimum 8 characters)"
+          minlength="8"
+          required
+        >
+      </div>
+
+      <div class="terms">
+        <input type="checkbox" id="terms" required>
+        <label for="terms">
+          I agree to the
+          <a href="#">Terms of Service</a>
+          and
+          <a href="#">Privacy Policy</a>.
+        </label>
+      </div>
+
+      <button type="submit" class="create-btn">
+        Create My Account →
+      </button>
+
+    </form>
+
+    <div class="divider">OR</div>
+
+    <button type="button" id="googleSignIn" class="google-btn">
+      Continue with Google
+    </button>
+
+    <p id="message"></p>
+
+    <div class="links">
+      Already have an account?
+      <a href="login.html">Sign In</a>
+    </div>
+
+    <a href="index.html" class="back-home">
+      ← Back to Homepage
+    </a>
+
+  </main>
+
+  <script type="module" src="register.js"></script>
+
+</body>
+</html>

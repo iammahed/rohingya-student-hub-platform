@@ -1,0 +1,578 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Home | Rohingya Student Hub</title>
+
+<style>
+:root {
+  --navy: #101d33;
+  --emerald: #087e58;
+  --green: #22c58b;
+  --background: #f3f7fb;
+  --white: #ffffff;
+  --text: #26364a;
+  --muted: #718096;
+  --border: #e5ebf2;
+  --shadow: 0 8px 28px rgba(16,29,51,0.08);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Inter, "Segoe UI", Arial, sans-serif;
+  background: var(--background);
+  color: var(--text);
+}
+
+/* TOP NAVIGATION */
+
+header {
+  background: linear-gradient(110deg,#101d33,#1c4054);
+  color: white;
+  padding: 15px 5%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  box-shadow: 0 5px 22px rgba(10,25,45,.18);
+}
+
+.logo {
+  color: #35e0a6;
+  font-size: 21px;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.search {
+  width: 32%;
+  padding: 12px 16px;
+  border: 1px solid #36516a;
+  border-radius: 10px;
+  background: #243950;
+  color: white;
+  outline: none;
+}
+
+.search:focus {
+  border-color: #35e0a6;
+  box-shadow: 0 0 0 3px rgba(53,224,166,.15);
+}
+
+.search::placeholder {
+  color: #bdcbd8;
+}
+
+.logout {
+  padding: 11px 19px;
+  border: none;
+  border-radius: 9px;
+  background: linear-gradient(120deg,#35e0a6,#16b982);
+  color: #09251d;
+  font-weight: 700;
+  cursor: pointer;
+  transition: .25s;
+}
+
+/* MAIN PAGE LAYOUT */
+
+.layout {
+  max-width: 1300px;
+  margin: 28px auto;
+  padding: 0 18px;
+  display: grid;
+  grid-template-columns: 235px minmax(0,1fr) 255px;
+  gap: 22px;
+}
+
+.panel,
+.post,
+.composer {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 15px;
+  margin-bottom: 19px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  transition: .25s;
+}
+
+.panel:hover,
+.post:hover {
+  box-shadow: 0 12px 32px rgba(16,29,51,.11);
+}
+
+/* STUDENT PROFILE CARD */
+
+.profile-card {
+  padding: 25px 15px;
+  text-align: center;
+  background: linear-gradient(155deg,#ffffff,#effff7);
+}
+
+.avatar {
+  width: 75px;
+  height: 75px;
+  border: 3px solid #baf4dc;
+  border-radius: 50%;
+  background: linear-gradient(135deg,#d9fff0,#a9f1d3);
+  color: #087e58;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 13px;
+  font-size: 27px;
+  font-weight: 800;
+}
+
+.profile-card p {
+  color: var(--muted);
+  font-size: 13px;
+  margin-top: 8px;
+  line-height: 1.6;
+}
+
+/* LEFT NAVIGATION */
+
+.menu {
+  padding: 12px;
+}
+
+.menu a {
+  display: block;
+  text-decoration: none;
+  color: #44566b;
+  padding: 14px 12px;
+  border-radius: 9px;
+  font-size: 14px;
+  margin: 3px 0;
+  transition: .2s;
+}
+
+.menu a:hover,
+.menu a.active {
+  background: linear-gradient(100deg,#e1fff1,#f1fff8);
+  color: #087e58;
+  font-weight: 700;
+}
+
+/* CREATE POST */
+
+.composer {
+  padding: 21px;
+  border-top: 3px solid #20c997;
+}
+
+.composer h3 {
+  font-size: 17px;
+  margin-bottom: 15px;
+}
+
+.composer textarea {
+  width: 100%;
+  min-height: 105px;
+  border: 1px solid #dce5ed;
+  border-radius: 11px;
+  padding: 14px;
+  resize: vertical;
+  font: inherit;
+  outline: none;
+  background: #fbfdff;
+}
+
+.composer textarea:focus {
+  border-color: #20c997;
+  box-shadow: 0 0 0 3px rgba(32,201,151,.12);
+}
+
+.composer-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  margin-top: 14px;
+  flex-wrap: wrap;
+}
+
+.muted {
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.post-button {
+  background: linear-gradient(120deg,#087e58,#20c997);
+  color: white;
+  border: none;
+  border-radius: 9px;
+  padding: 12px 23px;
+  cursor: pointer;
+  font-weight: 700;
+  transition: .25s;
+  box-shadow: 0 4px 12px rgba(8,135,94,.18);
+}
+
+.post-button:hover,
+.logout:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 7px 20px rgba(32,201,151,.28);
+}
+
+/* STUDENT FEED */
+
+.feed-title {
+  font-size: 20px;
+  margin: 22px 0 16px;
+}
+
+.post {
+  padding: 20px;
+}
+
+.post-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 15px;
+}
+
+.small-avatar {
+  width: 44px;
+  height: 44px;
+  background: linear-gradient(135deg,#d9fff0,#a9f1d3);
+  color: #087e58;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  border: 2px solid #d0f5e5;
+}
+
+.post-header p {
+  font-size: 12px;
+  color: var(--muted);
+  margin-top: 5px;
+}
+
+.post-content {
+  line-height: 1.8;
+  font-size: 14px;
+  color: #3c4d60;
+  overflow-wrap: anywhere;
+}
+
+.post-actions {
+  border-top: 1px solid var(--border);
+  margin-top: 17px;
+  padding-top: 14px;
+  display: flex;
+  justify-content: space-around;
+  gap: 8px;
+}
+
+.post-actions button {
+  background: transparent;
+  border: none;
+  color: #526477;
+  cursor: pointer;
+  font-weight: 600;
+  padding: 9px 12px;
+  border-radius: 7px;
+}
+
+.post-actions button:hover {
+  background: #e3fff2;
+  color: #087e58;
+}
+
+/* RIGHT SIDEBAR */
+
+.right-card {
+  padding: 19px;
+}
+
+.right-card h3 {
+  font-size: 15px;
+  margin-bottom: 13px;
+  color: var(--navy);
+}
+
+.right-card p {
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.7;
+  margin-bottom: 13px;
+}
+
+.right-card a {
+  color: var(--emerald);
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.right-card a:hover {
+  color: #20c997;
+}
+
+footer {
+  text-align: center;
+  padding: 28px;
+  color: #8492a2;
+  font-size: 13px;
+}
+
+/* RESPONSIVE DESIGN */
+
+@media(max-width:950px) {
+  .layout {
+    grid-template-columns: 190px minmax(0,1fr);
+  }
+  .right-column {
+    display: none;
+  }
+}
+
+@media(max-width:650px) {
+  header {
+    padding: 13px;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .logo {
+    font-size: 17px;
+  }
+  .search {
+    order: 3;
+    width: 100%;
+  }
+  .layout {
+    display: block;
+    margin-top: 15px;
+  }
+  .left-column {
+    display: none;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="logo">Rohingya Student Hub</div>
+  <input class="search" type="search"
+    placeholder="Search students and opportunities...">
+  <button class="logout" id="logoutButton">Log Out</button>
+</header>
+
+<div class="layout">
+
+  <!-- LEFT SIDEBAR -->
+
+  <aside class="left-column">
+
+    <div class="panel profile-card">
+      <div class="avatar" id="avatar">S</div>
+      <h3 id="studentName">Student</h3>
+      <p>Student Member</p>
+      <p>Building a brighter future through education.</p>
+    </div>
+
+    <div class="panel menu">
+      <a href="dashboard.html" class="active">⌂ Home Feed</a>
+      <a href="profile.html">♙ My Profile</a>
+      <a href="explore.html">⌕ Explore Students</a>
+      <a href="scholarships.html">🎓 Scholarships</a>
+      <a href="resources.html">📚 Learning Resources</a>
+      <a href="communities.html">♧ Communities</a>
+      <a href="notifications.html">♢ Notifications</a>
+    </div>
+
+  </aside>
+
+  <!-- MAIN FEED -->
+
+  <main>
+
+    <div class="composer">
+      <h3>Share something with the community</h3>
+
+      <textarea id="postText"
+        placeholder="What would you like to share today?"></textarea>
+
+      <div class="composer-bottom">
+        <span class="muted">
+          Share your learning journey and achievements.
+        </span>
+        <button class="post-button" id="postButton">
+          Create Post
+        </button>
+      </div>
+
+      <p id="postMessage" class="muted" role="status"></p>
+    </div>
+
+    <h2 class="feed-title">Student Feed</h2>
+
+    <div id="feed">
+
+      <article class="post">
+
+        <div class="post-header">
+          <div class="small-avatar">RH</div>
+          <div>
+            <strong>Rohingya Student Hub</strong>
+            <p>Community announcement · Example post</p>
+          </div>
+        </div>
+
+        <div class="post-content">
+          Welcome to Rohingya Student Hub! This is a place
+          to connect with students, discover opportunities,
+          share achievements and learn together.
+        </div>
+
+        <div class="post-actions">
+          <button type="button">♡ Like</button>
+          <button type="button">Comment</button>
+          <button type="button">Share</button>
+        </div>
+
+      </article>
+
+    </div>
+
+  </main>
+
+  <!-- RIGHT SIDEBAR -->
+
+  <aside class="right-column">
+
+    <div class="panel right-card">
+      <h3>Explore Opportunities</h3>
+      <p>Discover scholarships and international study opportunities.</p>
+      <a href="scholarships.html">Explore Scholarships →</a>
+    </div>
+
+    <div class="panel right-card">
+      <h3>Learning Corner</h3>
+      <p>Find free courses and resources to improve your skills.</p>
+      <a href="resources.html">Explore Resources →</a>
+    </div>
+
+    <div class="panel right-card">
+      <h3>Student Communities</h3>
+      <p>Connect with students who share your educational interests.</p>
+      <a href="communities.html">Discover Communities →</a>
+    </div>
+
+  </aside>
+
+</div>
+
+<footer>
+  © 2026 Rohingya Student Hub · Connect. Learn. Share. Grow.
+</footer>
+
+<script type="module">
+import { auth } from "./firebase.js";
+
+import {
+  onAuthStateChanged,
+  signOut
+} from "https://www.gstatic.com/firebasejs/11.10.0/firebase-auth.js";
+
+const studentName = document.getElementById("studentName");
+const avatar = document.getElementById("avatar");
+const logoutButton = document.getElementById("logoutButton");
+const postButton = document.getElementById("postButton");
+const postText = document.getElementById("postText");
+const feed = document.getElementById("feed");
+const postMessage = document.getElementById("postMessage");
+
+let currentUser = null;
+
+onAuthStateChanged(auth, (user) => {
+  if (user && user.emailVerified) {
+    currentUser = user;
+    const name = user.displayName || "Student";
+
+    studentName.textContent = name;
+    avatar.textContent = name.charAt(0).toUpperCase();
+
+  } else {
+    window.location.href = "login.html";
+  }
+});
+
+logoutButton.addEventListener("click", async () => {
+  await signOut(auth);
+  window.location.href = "login.html";
+});
+
+// Temporary local post preview.
+// Firebase post saving will be added later.
+
+postButton.addEventListener("click", () => {
+
+  const content = postText.value.trim();
+
+  if (!currentUser) {
+    postMessage.textContent = "Please sign in first.";
+    return;
+  }
+
+  if (!content) {
+    postMessage.textContent = "Please write something first.";
+    return;
+  }
+
+  const article = document.createElement("article");
+  article.className = "post";
+
+  const postHeader = document.createElement("div");
+  postHeader.className = "post-header";
+
+  const userAvatar = document.createElement("div");
+  userAvatar.className = "small-avatar";
+  userAvatar.textContent =
+    (currentUser.displayName || "S").charAt(0).toUpperCase();
+
+  const userInfo = document.createElement("div");
+
+  const name = document.createElement("strong");
+  name.textContent = currentUser.displayName || "Student";
+
+  const time = document.createElement("p");
+  time.textContent = "Just now";
+
+  userInfo.append(name, time);
+  postHeader.append(userAvatar, userInfo);
+
+  const postContent = document.createElement("div");
+  postContent.className = "post-content";
+  postContent.textContent = content;
+
+  article.append(postHeader, postContent);
+
+  feed.prepend(article);
+
+  postText.value = "";
+  postMessage.textContent = "Post added to this preview!";
+});
+</script>
+
+</body>
+</html>

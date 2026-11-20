@@ -1,0 +1,252 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Explore Students | Rohingya Student Hub</title>
+
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+    .explore-container {
+      max-width: 1100px;
+      margin: 35px auto;
+      padding: 20px;
+    }
+
+    .explore-header {
+      margin-bottom: 25px;
+    }
+
+    .explore-header h1 {
+      font-size: 30px;
+      margin-bottom: 8px;
+    }
+
+    .explore-search {
+      width: 100%;
+      padding: 15px;
+      border-radius: 12px;
+      border: 1px solid #ccc;
+      font-size: 15px;
+      margin: 20px 0;
+      outline: none;
+    }
+
+    .student-grid {
+      display: grid;
+      grid-template-columns:
+        repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+
+    .student-card {
+      background: var(--card-bg, #ffffff);
+      border: 1px solid #e5e7eb;
+      border-radius: 16px;
+      padding: 22px;
+      text-align: center;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+    }
+
+    .student-avatar {
+      width: 85px;
+      height: 85px;
+      border-radius: 50%;
+      object-fit: cover;
+      background: #ddd;
+      margin-bottom: 12px;
+    }
+
+    .student-card h3 {
+      margin: 8px 0;
+    }
+
+    .student-bio {
+      color: #777;
+      font-size: 14px;
+      min-height: 40px;
+    }
+
+    .student-actions {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .student-actions button {
+      padding: 10px 15px;
+      border: none;
+      border-radius: 9px;
+      cursor: pointer;
+      font-weight: 600;
+    }
+
+    .follow-btn {
+      background: #e8f0ff;
+      color: #2563eb;
+    }
+
+    .connect-btn {
+      background: #2563eb;
+      color: white;
+    }
+
+    .view-btn {
+      background: transparent;
+      border: 1px solid #aaa !important;
+    }
+
+    .empty-state {
+      text-align: center;
+      padding: 35px;
+      color: #777;
+    }
+  </style>
+</head>
+
+<body>
+
+  <main class="explore-container">
+
+    <header class="explore-header">
+      <h1>Explore Students</h1>
+      <p>Discover students and build your educational network.</p>
+    </header>
+
+    <input
+      type="search"
+      id="studentSearch"
+      class="explore-search"
+      placeholder="Search students by fullname, education or skills..."
+    >
+
+    <div id="studentGrid" class="student-grid">
+      <div class="empty-state">Loading students...</div>
+    </div>
+
+  </main>
+
+  <script type="module">
+    import {
+      collection,
+      getDocs
+    } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-firestore.js";
+
+    import { db } from "./firebase.js";
+
+    const grid = document.getElementById("studentGrid");
+    const search = document.getElementById("studentSearch");
+
+    let students = [];
+
+    function escapeHTML(value) {
+      return String(value ?? "").replace(/[&<>"']/g, char => ({
+        "&": "&amp;",
+        "<": "&lt;",
+        ">": "&gt;",
+        '"': "&quot;",
+        "'": "&#39;"
+      })[char]);
+    }
+
+    function renderStudents(list) {
+      grid.innerHTML = "";
+
+      if (!list.length) {
+        grid.innerHTML =
+          '<div class="empty-state">No students found.</div>';
+        return;
+      }
+
+      list.forEach(student => {
+        const name = escapeHTML(student.fullname || "Student");
+        const bio = escapeHTML(student.bio || "RHS Student");
+        const education = escapeHTML(student.education || "");
+        const photo = escapeHTML(student.photoURL || "");
+
+        const card = document.createElement("article");
+        card.className = "student-card";
+
+        card.innerHTML = `
+          <img
+            class="student-avatar"
+            src="${photo || 'https://placehold.co/100x100?text=Student'}"
+            alt=""
+          >
+          <h3>${name}</h3>
+          <p class="student-bio">${bio}</p>
+          <p>${education}</p>
+
+          <div class="student-actions">
+            <button class="follow-btn" type="button">
+              Follow
+            </button>
+            <button class="connect-btn" type="button">
+              Connect
+            </button>
+          </div>
+
+          <button class="view-btn" type="button"
+            style="margin-top:12px;padding:9px 15px;border-radius:8px;cursor:pointer">
+            View Profile
+          </button>
+        `;
+
+        card.querySelector(".view-btn").addEventListener("click", () => {
+          location.href =
+            "profile.html?uid=" + encodeURIComponent(student.uid);
+        });
+
+        card.querySelector(".follow-btn").addEventListener("click", () => {
+          alert("Follow functionality will be connected next.");
+        });
+
+        card.querySelector(".connect-btn").addEventListener("click", () => {
+          alert("Connection functionality will be connected next.");
+        });
+
+        grid.appendChild(card);
+      });
+    }
+
+    async function loadStudents() {
+      try {
+        const snapshot = await getDocs(collection(db, "users"));
+
+        students = snapshot.docs.map(doc => ({
+          uid: doc.id,
+          ...doc.data()
+        }));
+
+        renderStudents(students);
+
+      } catch (error) {
+        console.error(error);
+        grid.innerHTML =
+          '<div class="empty-state">Unable to load students. Please check Firebase configuration and Firestore Rules.</div>';
+      }
+    }
+
+    search.addEventListener("input", () => {
+      const query = search.value.toLowerCase().trim();
+
+      const filtered = students.filter(student => {
+        return [
+          student.name,
+          student.bio,
+          student.education,
+          ...(Array.isArray(student.skills) ? student.skills : [])
+        ].join(" ").toLowerCase().includes(query);
+      });
+
+      renderStudents(filtered);
+    });
+
+    loadStudents();
+  </script>
+
+</body>
+</html>

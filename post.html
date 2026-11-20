@@ -1,0 +1,299 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Post | Rohingya Student Hub</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      min-height: 100vh;
+      color: #172b3d;
+      background:
+        radial-gradient(circle at 10% 10%, #d1fae5, transparent 35%),
+        linear-gradient(135deg, #edf4fa, #f5f8fc);
+    }
+
+    header {
+      background: linear-gradient(110deg, #071b30, #123c50, #075d49);
+      color: white;
+      padding: 18px 6%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 5px 22px #0b253b30;
+    }
+
+    .logo {
+      font-size: 21px;
+      font-weight: bold;
+    }
+
+    .logo span {
+      color: #52e6ad;
+    }
+
+    header a {
+      color: #d8fff0;
+      text-decoration: none;
+      font-size: 14px;
+    }
+
+    main {
+      width: 100%;
+      max-width: 720px;
+      margin: 45px auto;
+      padding: 0 16px;
+    }
+
+    .page-heading {
+      margin-bottom: 20px;
+    }
+
+    .page-heading h1 {
+      font-size: 25px;
+      margin-bottom: 7px;
+    }
+
+    .page-heading p {
+      color: #687d90;
+      font-size: 14px;
+    }
+
+    .post-card {
+      background: white;
+      border: 1px solid #e2eaf0;
+      border-radius: 18px;
+      padding: 25px;
+      box-shadow: 0 12px 35px #18344a12;
+    }
+
+    .author {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .avatar {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      color: white;
+      font-weight: bold;
+      background: linear-gradient(135deg, #0d9488, #2563eb);
+    }
+
+    .author-info h3 {
+      font-size: 15px;
+      margin-bottom: 5px;
+    }
+
+    .author-info p {
+      font-size: 12px;
+      color: #8192a1;
+    }
+
+    .post-content {
+      font-size: 16px;
+      line-height: 1.8;
+      white-space: pre-wrap;
+      margin-bottom: 20px;
+    }
+
+    .post-image {
+      width: 100%;
+      max-height: 450px;
+      object-fit: cover;
+      border-radius: 12px;
+      margin-bottom: 18px;
+      display: none;
+    }
+
+    .post-stats {
+      display: flex;
+      justify-content: space-between;
+      color: #718397;
+      font-size: 13px;
+      padding: 12px 0;
+      border-bottom: 1px solid #e9eef2;
+    }
+
+    .actions {
+      display: flex;
+      justify-content: space-around;
+      gap: 10px;
+      padding: 15px 0;
+      border-bottom: 1px solid #e9eef2;
+    }
+
+    .actions button {
+      background: transparent;
+      border: none;
+      color: #42596d;
+      font-size: 14px;
+      cursor: pointer;
+    }
+
+    .actions button:hover {
+      color: #059669;
+    }
+
+    .share-area {
+      margin-top: 20px;
+    }
+
+    .share-area h3 {
+      font-size: 15px;
+      margin-bottom: 13px;
+    }
+
+    .share-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .share-buttons button {
+      padding: 11px 15px;
+      border: 1px solid #dce6ec;
+      border-radius: 9px;
+      background: #f7fafc;
+      color: #263e51;
+      cursor: pointer;
+      font-weight: 600;
+    }
+
+    .share-buttons button:hover {
+      border-color: #10b981;
+      background: #ecfdf5;
+    }
+
+    .comments {
+      margin-top: 28px;
+    }
+
+    .comments h3 {
+      font-size: 17px;
+      margin-bottom: 12px;
+    }
+
+    .comment-placeholder {
+      color: #8192a1;
+      font-size: 14px;
+      padding: 15px;
+      background: #f5f8fa;
+      border-radius: 10px;
+    }
+
+    #status {
+      text-align: center;
+      color: #64748b;
+      margin: 15px 0;
+      font-size: 14px;
+    }
+
+    @media (max-width: 500px) {
+      header {
+        padding: 16px;
+      }
+
+      .logo {
+        font-size: 17px;
+      }
+
+      .post-card {
+        padding: 17px;
+      }
+
+      .actions {
+        flex-wrap: wrap;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <div class="logo">Rohingya <span>Student Hub</span></div>
+    <a href="dashboard.html">← Home Feed</a>
+  </header>
+
+  <main>
+    <div class="page-heading">
+      <h1>Student Post</h1>
+      <p>Discover and share learning experiences.</p>
+    </div>
+
+    <article class="post-card">
+
+      <div id="status">Loading post...</div>
+
+      <div id="postDetails" hidden>
+
+        <div class="author">
+          <div class="avatar" id="avatar">S</div>
+          <div class="author-info">
+            <h3 id="authorName">Student</h3>
+            <p id="postDate">Post date</p>
+          </div>
+        </div>
+
+        <div class="post-content" id="postContent"></div>
+
+        <img
+          id="postImage"
+          class="post-image"
+          alt="Student post image"
+        >
+
+        <div class="post-stats">
+          <span id="likeCount">0 likes</span>
+          <span id="commentCount">0 comments</span>
+        </div>
+
+        <div class="actions">
+          <button type="button">♡ Like</button>
+          <button type="button">Comment</button>
+          <button type="button" id="shareButton">Share</button>
+        </div>
+
+        <div class="share-area">
+          <h3>Share this post</h3>
+          <div class="share-buttons">
+            <button type="button" id="whatsappShare">WhatsApp</button>
+            <button type="button" id="facebookShare">Facebook</button>
+            <button type="button" id="copyLink">Copy Link</button>
+            <button type="button" id="nativeShare">Other Apps</button>
+          </div>
+        </div>
+
+        <div class="comments">
+          <h3>Comments</h3>
+          <div class="comment-placeholder">
+            Comments will appear here.
+          </div>
+        </div>
+
+      </div>
+    </article>
+  </main>
+
+  <script>
+    // The Firebase post-loading and sharing functions
+    // will be connected in our next development step.
+  </script>
+
+</body>
+</html>
